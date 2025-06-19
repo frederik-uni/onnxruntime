@@ -767,7 +767,7 @@ mod dangerous {
         status_to_result(status).map_err(OrtError::GetTypeInfo)?;
         assert_not_null_pointer(typeinfo_ptr, "TypeInfo")?;
 
-        let mut tensor_info_ptr: *const sys::OrtTensorTypeAndShapeInfo = std::ptr::null_mut();
+        let mut tensor_info_ptr: *mut sys::OrtTensorTypeAndShapeInfo = std::ptr::null_mut();
         let status = unsafe {
             env.env().api().CastTypeInfoToTensorInfo.unwrap()(typeinfo_ptr, &mut tensor_info_ptr)
         };
