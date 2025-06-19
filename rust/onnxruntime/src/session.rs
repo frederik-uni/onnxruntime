@@ -460,7 +460,7 @@ impl Session {
                 .map(|input_array_ort| input_array_ort.ptr() as *const sys::OrtValue)
                 .collect();
 
-            let run_options_ptr: *const sys::OrtRunOptions = std::ptr::null();
+            let run_options_ptr: *mut sys::OrtRunOptions = std::ptr::null_mut();
 
             let status = unsafe {
                 self.env.env().api().Run.unwrap()(
